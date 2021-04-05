@@ -1,13 +1,10 @@
 // create init function to build inital plot when refreshed
-currentID = ""
 function init(){
     buildPlot()
 }
 
-//Submit Button Handler
+//create function that will apply once the option has changed
 function optionChanged() {
-    // Prevent the page from refreshing
-    // d3.event.preventDefault();
   
     // Build the plot with the new stock
     buildPlot();
@@ -22,6 +19,7 @@ function buildPlot(){
     d3.json("samples.json").then((data) =>{
         //get a list of all the id names
         var idValues = data.names;
+        console.log(data)
 
         // Create the drop down menu by inserting every id name in below function.
         idValues.forEach(id => d3.select('#selDataset').append('option').text(id).property("value", id));
@@ -49,7 +47,7 @@ function buildPlot(){
         // filteredID[0].otu_ids.slice(0, 10).map(int => "OTU " + int.toString())
 
         // data
-        var data = [trace1];
+        var dataPlot = [trace1];
 
         // Layout
         var layout = {
@@ -64,12 +62,65 @@ function buildPlot(){
         };
 
         // Use plotly to create new bar
-        Plotly.newPlot("bar", data, layout);
-        })
-};
+        Plotly.newPlot("bar", dataPlot, layout);
 
+        // create the demographics panel
+        filteredMeta = data.metadata.filter(entry => entry.id == currentID)
+        console.log(filteredMeta)
+
+        // create a demographics object to add to panel body
+        var demographics = {
+            'id: ': filteredMeta[0].id,
+            'ethnicity: ': filteredMeta[0].ethnicity,
+            'gender: ': filteredMeta[0].gender,
+            'age: ': filteredMeta[0].age,
+            'location: ': filteredMeta[0].location,
+            'bbtype: ': filteredMeta[0].bbtype,
+            'wfreq: ': filteredMeta[0].wfreq
+        }
+        //select the id to append the key value pair under demographics panel
+        panelBody = d3.select("#sample-metadata")
+
+        // remove the current demographic info to make way for new currentID
+        panelBody.html("")
+        
+        //append the key value pairs from demographics into the demographics panel
+        Object.entries(demographics).forEach(([key, value]) => {
+            panelBody.append('p').attr('style', 'font-weight: bold').html(key + value)
+     
+        });
+
+        // Create the trace for the bubble chart
+        var trace2 ={
+            x : filteredID[0].otu_ids,
+            y : filteredID[0].sample_values,
+            text : filteredID[0].otu_labels,
+            mode : 'markers',
+            marker: {
+                color : filteredID[0].otu_ids,
+                size : filteredID[0].sample_values
+            }
+        }
+
+        var data2 = [trace2]
+
+        //create the layout for the bubble chart
+        var layout2 = {
+            title : 'Marker Size',
+            showlegend : false, 
+        }
+
+        //plot plot plot with plotly
+        Plotly.newPlot('bubble', data2, layout2)
+        console.log(filteredID)
+    });
+};
+//question for office hours
+// x = d3.selectAll("#selDataset").node().value
+// console.log(x)
 
 // Create a function that creates the demograhpic info panel
+
 
 
 // select the current ID and store it in a variable to work with

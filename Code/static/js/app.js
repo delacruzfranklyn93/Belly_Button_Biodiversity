@@ -11,7 +11,6 @@ function optionChanged() {
   }
 
 
-
 //create a function that builds the new plot. 
 function buildPlot(){
 
@@ -86,7 +85,7 @@ function buildPlot(){
         
         //append the key value pairs from demographics into the demographics panel
         Object.entries(demographics).forEach(([key, value]) => {
-            panelBody.append('p').attr('style', 'font-weight: bold').html(key + value)
+            panelBody.append('p').attr('style', 'font-weight: bold').text(key + value)
      
         });
 
@@ -115,26 +114,8 @@ function buildPlot(){
         console.log(filteredID)
     });
 };
-//question for office hours
-// x = d3.selectAll("#selDataset").node().value
-// console.log(x)
 
-// Create a function that creates the demograhpic info panel
-
-
-
-// select the current ID and store it in a variable to work with
-
-
-    
-
+//run init for set the main 
 init();
-
-// y = data.samples.sort((a,b) => b.sample_values[0] - a.sample_values[0])
-// console.log(data)
-//  x = data.samples.map(data => data.sample_values[0])
-// console.log(idValues)
-
-// })
 
 

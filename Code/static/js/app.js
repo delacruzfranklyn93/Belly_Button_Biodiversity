@@ -44,7 +44,7 @@ function buildPlot(){
             orientation: 'h'
         };
         // filteredID[0].otu_ids.slice(0, 10).map(int => "OTU " + int.toString())
-
+    
         // data
         var dataPlot = [trace1];
 
@@ -86,7 +86,6 @@ function buildPlot(){
         //append the key value pairs from demographics into the demographics panel
         Object.entries(demographics).forEach(([key, value]) => {
             panelBody.append('p').attr('style', 'font-weight: bold').text(key + value)
-     
         });
 
         // Create the trace for the bubble chart
@@ -112,10 +111,12 @@ function buildPlot(){
         //plot plot plot with plotly
         Plotly.newPlot('bubble', data2, layout2)
         console.log(filteredID)
+        bonus()
     });
 };
 
 //run init for set the main 
 init();
+
 
 

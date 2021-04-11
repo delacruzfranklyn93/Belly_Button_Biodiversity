@@ -3,6 +3,8 @@
 ## Summary: 
 The purpose of this project is to create an interactive dashboard that allows the user to explore belly button biodiversity dataset, which catalogs the microbes that colonize human navels. The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.
 
+Tools Used: D3, Plotly, Bootstrap
+
 Link for interactive dashboard: https://delacruzfranklyn93.github.io/Belly_Button_Biodiversity/
 
 ## Steps: 
@@ -21,7 +23,4 @@ Link for interactive dashboard: https://delacruzfranklyn93.github.io/Belly_Butto
 3)	Gauge chart: To create the gauge chart, I first created my pie chart which would have the gradient colors and labels from lowest to highest frequency washings per week. I then proceeded to create my needle. I created several SVG paths that correlate with the washing frequency of a subject. I then created a function that would use a switch statement to select the correct path depending on the number of washing frequency and draws the needle. 
 
 ![gauge_chart](https://user-images.githubusercontent.com/63375741/114325787-e092ff00-9aff-11eb-91e9-f964ee1b93c0.png)
-
-
-### Tools Used: D3, Plotly, Bootstrap
 

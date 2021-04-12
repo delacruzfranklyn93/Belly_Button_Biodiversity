@@ -7,6 +7,8 @@ The purpose of this project is to create an interactive dashboard that allows th
 
 Link for interactive dashboard: https://delacruzfranklyn93.github.io/Belly_Button_Biodiversity/
 
+Dataset Link: http://robdunnlab.com/projects/belly-button-biodiversity/results-and-data/
+
 ## Steps: 
 1)	**Drop down and Demographics panel:** The first step was to add all the IDs to the “Test Subject ID No” dropdown so that the user can select which ID they would like to look at and so we can use that ID to parse out the information that we need from our data json file. I then use the ID to filter out the metadata pertaining to the selected ID and stored it in an object. I then used d3 to select the panel-body class in my index.html where I used a forEach statement to iterate through the object and append the data to the demographics panel.
 

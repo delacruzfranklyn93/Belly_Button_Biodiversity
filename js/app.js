@@ -18,22 +18,17 @@ function buildPlot(){
     d3.json("samples.json").then((data) =>{
         //get a list of all the id names
         var idValues = data.names;
-        console.log(data)
-
+  
         // Create the drop down menu by inserting every id name in below function.
         idValues.forEach(id => d3.select('#selDataset').append('option').text(id).property("value", id));
 
 
         // Use D3 to select the current ID and store in a variable to work with
         var currentID = d3.selectAll("#selDataset").node().value;
-        console.log(currentID)
+     
 
         //filter the data for the current ID to get relavant information
         filteredID = data.samples.filter(entry => entry.id == currentID);
-
-        //sort the data from highest to lowest sample sample
-
-        console.log(filteredID[0].sample_values);
 
         // create Trace for the horizontal bar chart
         var trace1 = {
@@ -43,8 +38,8 @@ function buildPlot(){
             type:"bar",
             orientation: 'h'
         };
-        // filteredID[0].otu_ids.slice(0, 10).map(int => "OTU " + int.toString())
     
+      
         // data
         var dataPlot = [trace1];
 
@@ -65,8 +60,7 @@ function buildPlot(){
 
         // create the demographics panel
         filteredMeta = data.metadata.filter(entry => entry.id == currentID)
-        console.log(filteredMeta)
-
+       
         // create a demographics object to add to panel body
         var demographics = {
             'id: ': filteredMeta[0].id,
@@ -111,11 +105,11 @@ function buildPlot(){
         //plot plot plot with plotly
         Plotly.newPlot('bubble', data2, layout2)
         console.log(filteredID)
-        bonus()
+        gauge()
     });
 };
 
-//run init for set the main 
+//run init to  set the main page
 init();
 
 
